@@ -1,0 +1,31 @@
+
+
+<p>Nombre del empleado: {{getNombre()}}</p>
+
+<p>Apellido del empleado: {{getApellido()}}</p>
+
+<p>Edad del empleado: {{(edad<18)?"Menor de edad":"Mayor de edad"}}</p>
+
+<p>Empresa del empleado: {{empresa}}</p>
+
+<!--Introduce la empresa: <input type="text" #empresa (keyup)="0" [disabled]="habilitacionCuadro">-->
+
+Introduce la empresa: <input type="text" [(ngModel)]="empresa" [disabled]="habilitacionCuadro"/>
+
+<br/>
+<br/>
+
+<!--
+<input type="button" value="Dale!" (click)="llamaEmpresa(empresa.value)">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<button (click)="llamaEmpresa(empresa.value)">Call</button>
+-->
+
+{{textoDeRegistro}}<br/>
+
+<!--Registrado: <input type="checkbox" id="registro" [checked]="usuRegistrado" (click)="setUsuarioRegistrado()"/><br/>-->
+
+Registrado: <input type="radio" name="nRegistro" value="true" id="registro" [checked]="usuRegistrado" (click)="setUsuarioRegistrado($event)"/><br/>
+No registrado: <input type="radio" name="nRegistro" value="false" id="registro" [checked]="usuRegistrado" (click)="setUsuarioRegistrado($event)"/><br/>
+
+{{getRegistroUsuario()}}
