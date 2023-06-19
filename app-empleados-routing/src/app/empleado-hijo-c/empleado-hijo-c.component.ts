@@ -18,19 +18,14 @@ export class EmpleadoHijoCComponent implements OnInit{
 
   }
 
-  empleados:Empleado[]=[
-    new Empleado("Juan","Díaz","Presidente",7500),
-    new Empleado("Anna","Martín","Directora",5500),
-    new Empleado("María","Fernández","Jefa Sección",3500),
-    new Empleado("Laura","López","Administrativo",2500)
-  ];
+//  empleados:Empleado[]=[];
+  arrayCaracteristicas:string[]=[];
 
   agregarEmpleado(miEmpleado:Empleado) {
 //    let miEmpleado=new Empleado(this.cuadroNombre,this.cuadroApellido,this.cuadroCargo,this.cuadroSalario);
-    this.empleados.push(miEmpleado);
+//    this.empleados.push(miEmpleado);
   }
 
-  arrayCaracteristicas = [''];
 
   agregarCarracteristica(nuevaCaracteristica: string) {
     this.arrayCaracteristicas.push(nuevaCaracteristica);
