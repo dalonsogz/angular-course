@@ -46,6 +46,7 @@ export class ActualizaComponentComponent implements OnInit {
   }
 */
 
+/*9
 actualizaEmpleado() {
   if (this.accion==1) {
     let miEmpleado=new Empleado(this.cuadroNombre,this.cuadroApellido,this.cuadroCargo,this.cuadroSalario);
@@ -54,6 +55,22 @@ actualizaEmpleado() {
     this.empleadosService.eliminarEmpleado(this.indice);
   }
   this.router.navigate(['']);
+}
+*/
+
+async actualizaEmpleado() {
+  if (this.accion == 1) {
+    let miniEmpleado = new Empleado(this.cuadroNombre, this.cuadroApellido, this.cuadroCargo, this.cuadroSalario);
+    await this.empleadosService.actualizarEmpleado(this.indice, miniEmpleado);
+    await this.router.navigate(['']);
+  } else if (this.accion == 2) {
+    await this.empleadosService.eliminarEmpleado(this.indice);
+    await this.router.navigate(['']);
+  }
+  
+  // espera a que se completen las operaciones antes de recargar la página
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  location.reload();
 }
 
   cuadroNombre:string = "";

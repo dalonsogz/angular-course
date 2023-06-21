@@ -3,13 +3,16 @@ import { Empleado } from "./empleado.model";
 import { ServicioEmpleadosService } from "./servicio-empleados.service";
 import { DataServices } from "./data.services";
 
+export let browserRefresh=false;
+
 @Injectable()
 export class EmpleadosService {
 
     constructor(private servicioVentanaEmergente:ServicioEmpleadosService, private dataService:DataServices){
-        
+
     }
     
+
     setEmpleados(misEmpleados:Empleado[]) {
         this.empleados = misEmpleados;
     }
