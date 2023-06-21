@@ -46,7 +46,7 @@ export class ActualizaComponentComponent implements OnInit {
   }
 */
 
-/*9
+/*
 actualizaEmpleado() {
   if (this.accion==1) {
     let miEmpleado=new Empleado(this.cuadroNombre,this.cuadroApellido,this.cuadroCargo,this.cuadroSalario);
@@ -79,6 +79,4 @@ async actualizaEmpleado() {
   cuadroSalario:number = 0;
 
   indice:number=0;
-
-
 }
