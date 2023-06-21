@@ -28,8 +28,6 @@ export class EmpleadosService {
     }
 
 
-
-
     agregarEmpleadoServicio(empleado:Empleado){
         this.servicioVentanaEmergente.muestraMensaje("Persona que se va a agregar:" + "\n" + empleado.nombre + "\n" + "Salario:" + empleado.salario);
         this.empleados.push(empleado);
@@ -48,9 +46,15 @@ export class EmpleadosService {
         empleadoModificado.apellido = empleado.apellido;
         empleadoModificado.cargo = empleado.cargo;
         empleadoModificado.salario = empleado.salario;
+
+        this.dataService.actualizarEmpleado(indice,empleado);
     }
 
     eliminarEmpleado(indice: number) {
         this.empleados.splice(indice,1);
+
+        this.dataService.eliminarEmpleado(indice);
+
+        if (this.empleados!=null) this.dataService.guardarEmpleados(this.empleados);
     }
 }

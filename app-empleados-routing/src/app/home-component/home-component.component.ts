@@ -24,9 +24,12 @@ export class HomeComponentComponent implements OnInit{
 
       console.log(misEmpleados);
 
-      this.empleados=Object.values(misEmpleados);
+      if (misEmpleados!=null) {
 
-      this.empleadosService.setEmpleados(this.empleados);
+        this.empleados=Object.values(misEmpleados);
+
+        this.empleadosService.setEmpleados(this.empleados);
+      }
 
     });
   }
