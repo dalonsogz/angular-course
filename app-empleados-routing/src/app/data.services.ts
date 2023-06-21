@@ -14,7 +14,8 @@ export class DataServices {
     }
 
     guardarEmpleados(empleados:Empleado[]) {
-        this.httpClient.put("https://mis-clientes-6665d-default-rtdb.europe-west1.firebasedatabase.app/datos.json",empleados).subscribe(
+        const token=this.loginService.getIdToken();
+        this.httpClient.put("https://mis-clientes-6665d-default-rtdb.europe-west1.firebasedatabase.app/datos.json?auth=" + token,empleados).subscribe(
             response=>console.log("Se han guardado los empleados:" + response),
             
             error=>console.log("Error: " + error),
@@ -23,8 +24,8 @@ export class DataServices {
     }
 
     actualizarEmpleado(indice:number,empleado:Empleado) {
-
-        let url = "https://mis-clientes-6665d-default-rtdb.europe-west1.firebasedatabase.app/datos/"+ indice + ".json" 
+        const token=this.loginService.getIdToken();
+        let url = "https://mis-clientes-6665d-default-rtdb.europe-west1.firebasedatabase.app/datos/"+ indice + ".json?auth=" + token; 
 
         this.httpClient.put(url,empleado).subscribe(
             response=>console.log("Se ha modificado correctamente el empleado:" + response),
@@ -35,8 +36,8 @@ export class DataServices {
     }
 
     eliminarEmpleado(indice:number) {
-
-        let url = "https://mis-clientes-6665d-default-rtdb.europe-west1.firebasedatabase.app/datos/"+ indice + ".json" 
+        const token=this.loginService.getIdToken();
+        let url = "https://mis-clientes-6665d-default-rtdb.europe-west1.firebasedatabase.app/datos/"+ indice + ".json?auth=" + token;  
 
         this.httpClient.delete(url).subscribe(
             response=>console.log("Se ha eliminado correctamente el empleado:" + response),
