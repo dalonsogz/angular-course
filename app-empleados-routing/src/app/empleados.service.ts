@@ -1,25 +1,39 @@
 import { Injectable } from "@angular/core";
 import { Empleado } from "./empleado.model";
 import { ServicioEmpleadosService } from "./servicio-empleados.service";
+import { DataServices } from "./data.services";
 
 @Injectable()
 export class EmpleadosService {
 
-    constructor(private servicioVentanaEmergente:ServicioEmpleadosService){
+    constructor(private servicioVentanaEmergente:ServicioEmpleadosService, private dataService:DataServices){
         
     }
+    
+    setEmpleados(misEmpleados:Empleado[]) {
+        this.empleados = misEmpleados;
+    }
 
-    empleados:Empleado[]=[
-        new Empleado("Juan","Díaz","Presidente",7500),
-        new Empleado("Ana","Martín","Directora",5500),
-        new Empleado("María","Fernández","Jefa Sección",3500),
-        new Empleado("Laura","López","Administrativo",2500)
-      ];
+    empleados:Empleado[]=[];
+
+//    empleados:Empleado[]=[
+//        new Empleado("Juan","Díaz","Presidente",7500),
+//        new Empleado("Ana","Martín","Directora",5500),
+//        new Empleado("María","Fernández","Jefa Sección",3500),
+//        new Empleado("Laura","López","Administrativo",2500)
+//    ];
+
+    obetenerEmpleados() {
+        return this.dataService.cargarEmpleados();
+    }
+
+
 
 
     agregarEmpleadoServicio(empleado:Empleado){
         this.servicioVentanaEmergente.muestraMensaje("Persona que se va a agregar:" + "\n" + empleado.nombre + "\n" + "Salario:" + empleado.salario);
         this.empleados.push(empleado);
+        this.dataService.guardarEmpleados(this.empleados);
     }
 
     encontrarEmpleado(indice: number): Empleado {
