@@ -17,6 +17,7 @@ import { ErrorPersonalizadoComponent } from './error-personalizado/error-persona
 import { DataServices } from './data.services';
 import { HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { CookieService } from 'ngx-cookie-service';
 import { LoginService } from './login/login.service';
 
 const appRoutes:Routes=[
@@ -48,7 +49,7 @@ const appRoutes:Routes=[
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [ServicioEmpleadosService,EmpleadosService,DataServices, LoginService],
+  providers: [ServicioEmpleadosService, EmpleadosService, DataServices, LoginService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

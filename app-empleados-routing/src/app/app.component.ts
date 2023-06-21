@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 
 import firebase from 'firebase/compat/app'
+import { LoginService } from './login/login.service';
 
 @Component({
   selector: 'app-raiz',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit {
 
   titulo = 'App Empleados';
 
-  constructor() {}
+  constructor(private loginService:LoginService) {}
 
   ngOnInit(): void {
     firebase.initializeApp({
@@ -21,5 +22,12 @@ export class AppComponent implements OnInit {
     });
   }
 
+  estaLogueado() {
+    return this.loginService.estaLogueado();
+  }
+
+  logout() {
+    this.loginService.logout();
+  }
 
 }
