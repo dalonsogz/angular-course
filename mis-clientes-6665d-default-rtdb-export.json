@@ -1,0 +1,28 @@
+{
+  "datos": [
+    {
+      "apellido": "Pérez",
+      "cargo": "Director",
+      "nombre": "Ramón",
+      "salario": 4000
+    },
+    {
+      "apellido": "Calleja",
+      "cargo": "Administrativa",
+      "nombre": "Luna",
+      "salario": 1500
+    },
+    {
+      "apellido": "Duque",
+      "cargo": "Astronauta",
+      "nombre": "Pedro",
+      "salario": 10000
+    },
+    {
+      "apellido": "Torres",
+      "cargo": "Conserje",
+      "nombre": "Antonio",
+      "salario": 1200
+    }
+  ]
+}

@@ -6,18 +6,7 @@ import { DataServices } from "./data.services";
 export let browserRefresh=false;
 
 @Injectable()
-export class EmpleadosService {
-
-    constructor(private servicioVentanaEmergente:ServicioEmpleadosService, private dataService:DataServices){
-
-    }
-    
-
-    setEmpleados(misEmpleados:Empleado[]) {
-        this.empleados = misEmpleados;
-    }
-
-    empleados:Empleado[]=[];
+export class EmpleadosService{
 
 //    empleados:Empleado[]=[
 //        new Empleado("Juan","Díaz","Presidente",7500),
@@ -26,10 +15,20 @@ export class EmpleadosService {
 //        new Empleado("Laura","López","Administrativo",2500)
 //    ];
 
+    empleados:Empleado[]=[];
+
+    constructor(private servicioVentanaEmergente:ServicioEmpleadosService, private dataService:DataServices){
+        console.log("**************** Carga empleados en el constructor del servicio");
+        this.empleados = Object.values(this.dataService.cargarEmpleados());
+    }
+
+    setEmpleados(misEmpleados:Empleado[]) {
+        this.empleados = misEmpleados;
+    }
+
     obetenerEmpleados() {
         return this.dataService.cargarEmpleados();
     }
-
 
     agregarEmpleadoServicio(empleado:Empleado){
         this.servicioVentanaEmergente.muestraMensaje("Persona que se va a agregar:" + "\n" + empleado.nombre + "\n" + "Salario:" + empleado.salario);
@@ -38,7 +37,6 @@ export class EmpleadosService {
     }
 
     encontrarEmpleado(indice: number): Empleado {
-
         let empleado:Empleado=this.empleados[indice];
         return empleado;
     }
@@ -55,9 +53,7 @@ export class EmpleadosService {
 
     eliminarEmpleado(indice: number) {
         this.empleados.splice(indice,1);
-
         this.dataService.eliminarEmpleado(indice);
-
         if (this.empleados!=null) this.dataService.guardarEmpleados(this.empleados);
     }
 }

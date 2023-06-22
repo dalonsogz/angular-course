@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Empleado } from '../empleado.model';
-import { ServicioEmpleadosService } from '../servicio-empleados.service';
 import { EmpleadosService } from '../empleados.service';
 
 @Component({
@@ -11,26 +10,21 @@ import { EmpleadosService } from '../empleados.service';
 export class HomeComponentComponent implements OnInit{
   titulo = 'Listado de Empleados';
 
-  constructor(private miServicio:ServicioEmpleadosService,private empleadosService:EmpleadosService) {
+  constructor(private empleadosService:EmpleadosService) {
 //    this.empleados=this.empleadosService.empleados;
   }
 
   empleados:Empleado[]=[];
 
   ngOnInit(): void {
-//    this.empleados=this.empleadosService.empleados;
-//    console.log(this.empleadosService.obetenerEmpleados());
     this.empleadosService.obetenerEmpleados().subscribe(misEmpleados=>{
 
-      console.log(misEmpleados);
+      console.log("HomeComponentComponent:ngOnInit():" + misEmpleados);
 
       if (misEmpleados!=null) {
-
         this.empleados=Object.values(misEmpleados);
-
         this.empleadosService.setEmpleados(this.empleados);
       }
-
     });
   }
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ServicioEmpleadosService } from '../servicio-empleados.service';
 import { EmpleadosService } from '../empleados.service';
 import { Empleado } from '../empleado.model';
 
@@ -10,13 +9,26 @@ import { Empleado } from '../empleado.model';
   styleUrls: ['./proyectos-component.component.css']
 })
 export class ProyectosComponentComponent implements OnInit {
-  
-  constructor(private router:Router,private miServicio:ServicioEmpleadosService,private empleadosService:EmpleadosService) { }
 
   empleados:Empleado[]=[];
+  
+  cuadroNombre:string = "";
+  cuadroApellido:string = "";
+  cuadroCargo:string = "";
+  cuadroSalario:number = 0;
+
+  constructor(private router:Router, private empleadosService:EmpleadosService) { }
 
   ngOnInit(): void {
-    this.empleados=this.empleadosService.empleados;
+    this.empleadosService.obetenerEmpleados().subscribe(misEmpleados=>{
+
+      console.log("ProyectosComponentComponent:ngOnInit():" + misEmpleados);
+
+      if (misEmpleados!=null) {
+        this.empleados=Object.values(misEmpleados);
+        this.empleadosService.setEmpleados(this.empleados);
+      }
+    });
   }
 
   volverHome() {
@@ -29,10 +41,5 @@ export class ProyectosComponentComponent implements OnInit {
     this.empleadosService.agregarEmpleadoServicio(miEmpleado);
     this.router.navigate(['']);
   }
-
-  cuadroNombre:string = "";
-  cuadroApellido:string = "";
-  cuadroCargo:string = "";
-  cuadroSalario:number = 0;
 
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicioEmpleadosService } from '../servicio-empleados.service';
 import { EmpleadosService } from '../empleados.service';
 import { Empleado } from '../empleado.model';
 
@@ -12,7 +11,7 @@ import { Empleado } from '../empleado.model';
 })
 export class ActualizaComponentComponent implements OnInit {
 
-  constructor(private router:Router,private route:ActivatedRoute, private miServicio:ServicioEmpleadosService,private empleadosService:EmpleadosService) { }
+  constructor(private router:Router,private route:ActivatedRoute, private empleadosService:EmpleadosService) { }
 
   empleados:Empleado[]=[];
 
@@ -70,7 +69,7 @@ async actualizaEmpleado() {
   
   // espera a que se completen las operaciones antes de recargar la página
   await new Promise(resolve => setTimeout(resolve, 1000));
-  location.reload();
+  window.location.reload();
 }
 
   cuadroNombre:string = "";
